@@ -1,0 +1,31 @@
+<h1>登录</h1>
+
+<%= form_for [:admin,@user] do |f| %>
+<% if @user.errors.any? %>
+<div class="error_messages">
+  <h2>登录错误</h2>
+  <ul>
+    <% for message in @user.errors.full_messages %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="field">
+  <%= f.label "邮箱" %>
+  <%= f.text_field :email %>
+</div>
+<div class="field">
+  <%= f.label "用户名" %>
+  <%= f.text_field :username %>
+</div>
+<div class="field">
+  <%= f.label "密码" %>
+  <%= f.password_field :password %>
+</div>
+<div class="field">
+  <%= f.label "确认密码" %>
+  <%= f.password_field :password_confirmation %>
+</div>
+<div class="actions"><%= f.submit("注册") %></div>
+<% end %>
