@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
 	# 微信认证入口
+	skip_before_filter :verify_authenticity_token
 	layout false
 	def index
 		if check_signature

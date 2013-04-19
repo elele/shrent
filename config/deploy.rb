@@ -75,7 +75,9 @@ task :unicorn_start => :environment do
   queue! %[unicorn_rails -c  /root/www/weixin.shrent.com/current/config/unicorn.rb -E production -D]
 end
 task :unicorn_restart => :environment do
-  queue %[kill -USR2 `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
+  unicorn_stop
+  unicorn_start
+  # queue %[kill -USR2 `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
 end
 task :unicorn_stop => :environment do
   queue %[kill -QUIT `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
