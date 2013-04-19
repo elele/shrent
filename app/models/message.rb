@@ -27,5 +27,6 @@ class Message < ActiveRecord::Base
 		message.create_time = Time.at(xml["xml"]["CreateTime"].to_i)
 		message.msg_type = xml["xml"]["MsgType"].downcase
 		message.msg_id = xml["xml"]["MsgId"].to_i if xml["xml"]["MsgId"].present?
+		message
 	end
 end
