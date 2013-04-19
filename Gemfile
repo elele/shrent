@@ -22,6 +22,8 @@ group :assets do
 end
 
 gem 'sorcery'  
+gem 'unicorn'
+gem 'mina'
 
 gem 'jquery-rails'
 

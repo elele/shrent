@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   def create  
     @user = User.new(params[:user])  
     if @user.save  
-      redirect_to root_url, :notice => "登录成功!"  
+      redirect_to login_path, :notice => "登录成功!"  
     else  
       render :new  
     end  

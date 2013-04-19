@@ -9,7 +9,7 @@ Shrent::Application.routes.draw do
     resources :users  
     resources :sessions
   end  
-  root :to => "admin/sessions#new"  
+  root :to => "welcome#index"  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
