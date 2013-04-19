@@ -17,7 +17,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['config/database.yml', 'log','tmp']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -31,7 +31,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+  # invoke :'rvm:use[ruby-1.9.3-p392]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -57,15 +57,28 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
+    # invoke :'rails:db_migrate'
+    # invoke :'rails:assets_precompile'
 
     to :launch do
       queue 'touch tmp/restart.txt'
     end
   end
+ 
+
 end
 
+desc "unicorn"
+task :unicorn_start => :environment do
+  queue! 'cd /root/www/weixin.shrent.com/current'
+  queue! %[unicorn_rails -c  /root/www/weixin.shrent.com/current/config/unicorn.rb -E production -D]
+end
+task :unicorn_restart => :environment do
+  queue %[kill -USR2 `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
+end
+task :unicorn_stop => :environment do
+  queue %[kill -QUIT `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
+end
 # For help in making your deploy script, see the Mina documentation:
 #
 #  - http://nadarei.co/mina

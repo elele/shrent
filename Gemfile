@@ -1,5 +1,5 @@
-# source 'https://rubygems.org'
-source 'http://ruby.taobao.org'
+source 'https://rubygems.org'
+# source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.13'
 
@@ -24,6 +24,7 @@ end
 gem 'sorcery'  
 gem 'unicorn'
 gem 'mina'
+gem "enum_attr", :git => "git://github.com/fermin/enum_attr.git"
 
 gem 'jquery-rails'
 

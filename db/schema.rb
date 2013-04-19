@@ -11,7 +11,55 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418062211) do
+ActiveRecord::Schema.define(:version => 20130419063458) do
+
+  create_table "message_events", :force => true do |t|
+    t.integer  "event"
+    t.string   "event_key"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "message_images", :force => true do |t|
+    t.string   "pic_url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "message_links", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "message_locations", :force => true do |t|
+    t.float    "location_x"
+    t.float    "location_y"
+    t.string   "scale"
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "message_texts", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "to_user_name"
+    t.string   "from_user_name"
+    t.datetime "create_time"
+    t.string   "msg_type"
+    t.integer  "msg_id"
+    t.integer  "relatable_id"
+    t.string   "relatable_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",         :null => false

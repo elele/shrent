@@ -5,6 +5,9 @@ class WelcomeController < ApplicationController
 		if check_signature
 			if request.get?
 				render :text => params[:echostr]
+			else
+				@xml = Message.dispose(request.body.read)
+				render :text => @xml 
 			end
 		else
 			render :nothing => true

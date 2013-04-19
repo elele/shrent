@@ -1,5 +1,11 @@
+GIT
+  remote: git://github.com/fermin/enum_attr.git
+  revision: 81668bd67af261716f3344384067f5a65cb6d07c
+  specs:
+    enum_attr (1.0.2)
+
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -137,6 +143,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.1.0)
+  enum_attr!
   jquery-rails
   mina
   mysql2
