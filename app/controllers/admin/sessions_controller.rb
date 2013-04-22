@@ -8,7 +8,7 @@ class Admin::SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password],params[:remember_me])
     if user
-      redirect_to messages_path, :notice => "登录成功"
+      redirect_to admin_messages_path, :notice => "登录成功"
     else
       flash.now.alert = "邮件和密码错误"
       render :new
