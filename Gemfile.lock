@@ -152,6 +152,7 @@ DEPENDENCIES
   enum_attr!
   execjs
   jquery-rails
+  libv8
   mina
   mysql2
   rails (= 3.2.13)
