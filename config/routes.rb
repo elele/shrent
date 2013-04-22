@@ -8,6 +8,7 @@ Shrent::Application.routes.draw do
   namespace :admin do 
     resources :users  
     resources :sessions
+    resources :messages
   end  
   root :to => "welcome#index"  
 

@@ -58,11 +58,11 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    # invoke :'rails:assets_precompile'
+    invoke :'rails:assets_precompile'
 
     to :launch do
       # queue 'touch tmp/restart.txt'
-      unicorn_restart
+      invoke :unicorn_restart
     end
   end
  
@@ -75,8 +75,8 @@ task :unicorn_start => :environment do
   queue! %[unicorn_rails -c  /root/www/weixin.shrent.com/current/config/unicorn.rb -E production -D]
 end
 task :unicorn_restart => :environment do
-  unicorn_stop
-  unicorn_start
+  invoke :unicorn_stop
+  invoke :unicorn_start
   # queue %[kill -USR2 `cat /root/www/weixin.shrent.com/current/tmp/pids/unicorn.pid`]
 end
 task :unicorn_stop => :environment do

@@ -16,6 +16,14 @@ class Message < ActiveRecord::Base
 			message.save
 			res_xml = message.relatable.render
 		when "text"  #文本消息
+		when "location" # 地理消息
+			message.relatable = MessageLocation.new
+			message.relatable.location_x = weixin_xml["xml"]["Location_X"]
+			message.relatable.location_y = weixin_xml["xml"]['Location_Y']
+			message.relatable.scale = weixin_xml["xml"]["Scale"]
+			message.relatable.label = weixin_xml["xml"]["Label"]
+			message.save
+			res_xml = message.relatable.render
 		end
 		res_xml || ""
 	end

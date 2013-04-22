@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>用户微信ID</th>
+			<th>开发者ID</th>
+			<th>消息类型 </th>
+			<th>MSG_ID</th>
+			<th>内容</th>
+			<th>时间</th>
+		</tr>
+	</thead>	
+	<tbody>
+	<% @messages.each do |msg|%>
+		<tr>
+			<td><%= msg.to_user_name%></td>
+			<td><%= msg.from_user_name%></td>
+			<td><%= msg.msg_type%></td>
+			<td><%= msg.msg_id%></td>
+			<% begin %>
+				<td><%= render msg.relatable.class.to_s.downcase,:relatable => msg.relatable%></td>
+			<%rescue Exception => e%>
+				<td><%= e.message%></td>
+			<%end%> 
+		
+			<td><%= msg.created_at.to_s(:db)%></td>
+		</tr>
+	<% end%> 
+	</tbody>
+</table>
