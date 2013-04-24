@@ -1,0 +1,27 @@
+<h1>Listing admin_houses</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <th>标题</th>
+    <th>内容</th>
+    <th>地址</th>
+    <th>价格</th>
+    <th>图片</th>
+    <th>操作</th>
+  </tr>
+
+<% @admin_houses.each do |admin_house| %>
+  <tr>
+
+    <td><%= admin_house.title%></td>
+    <td><%= admin_house.content%></td>
+    <td><%= admin_house.address%></td>
+    <td><%= admin_house.price%></td>
+    <td><%= image_tag(admin_house.avatar.thumb.url)%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New House', new_admin_house_path %>
