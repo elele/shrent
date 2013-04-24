@@ -34,4 +34,6 @@ Shrent::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  DOMIAN = 'http://3tai.localtunnel.com'
 end

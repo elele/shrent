@@ -3,6 +3,7 @@
 TOKEN = "c95c12f785d7e18a9755bc8842a0366d" #密钥
 
 
+
 # 返回的模版
 TEXT_TPL = "<xml>
               <ToUserName><![CDATA[%s]]></ToUserName>
@@ -14,10 +15,9 @@ TEXT_TPL = "<xml>
               </xml>"
 NEW_TPL = "<xml>
 	           <ToUserName><![CDATA[%s]]></ToUserName>
-	           <FromUserName><![CDATA[news]]></FromUserName>
+	           <FromUserName><![CDATA[%s]]></FromUserName>
 	           <CreateTime>%s</CreateTime>
-	           <MsgType><![CDATA[%s]]></MsgType>
-	           <Content><![CDATA[%s]]></Content>
+	           <MsgType><![CDATA[news]]></MsgType>
 	           <ArticleCount>%d</ArticleCount>
 	           <Articles>
 	           %s

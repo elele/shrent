@@ -5,10 +5,12 @@ Shrent::Application.routes.draw do
   get "logout" => "admin/sessions#destroy", :as => "logout"  
   get "login" => "admin/sessions#new", :as => "login"  
   get "signup" => "admin/users#new", :as => "signup"  
+  resources :houses , :only => [:index,:show]
   namespace :admin do 
     resources :users  
     resources :sessions
     resources :messages
+    resources :houses
   end  
   root :to => "welcome#index"  
 

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 source 'https://rubygems.org'
 # source 'http://ruby.taobao.org'
 
@@ -29,6 +31,11 @@ gem "enum_attr", :git => "git://github.com/fermin/enum_attr.git"
 gem 'jquery-rails'
 
 gem 'will_paginate', '~> 3.0'
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem "enum_attr", :git => "git://github.com/fermin/enum_attr.git"
+gem 'quiet_assets' #禁用assets访问日志
 
 group :development do
 	gem "better_errors" 

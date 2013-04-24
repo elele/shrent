@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419063458) do
+ActiveRecord::Schema.define(:version => 20130424021856) do
+
+  create_table "houses", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.boolean  "publish"
+    t.string   "avatar"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "to_user_name"
+    t.integer  "house_type"
+    t.integer  "price"
+    t.string   "address"
+  end
+
+  add_index "houses", ["to_user_name"], :name => "index_houses_on_to_user_name"
 
   create_table "message_events", :force => true do |t|
     t.integer  "event"

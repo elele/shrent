@@ -17,7 +17,7 @@
 			<td><%= msg.msg_type%></td>
 			<td><%= msg.msg_id%></td>
 			<% begin %>
-				<td><%= render msg.relatable.class.to_s.downcase,:relatable => msg.relatable%></td>
+				<td><%= render msg.relatable.class.to_s.underscore,:relatable => msg.relatable%></td>
 			<%rescue Exception => e%>
 				<td><%= e.message%></td>
 			<%end%> 
