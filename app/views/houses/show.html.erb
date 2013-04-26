@@ -1,0 +1,11 @@
+<div class="image">
+	<ul>
+		<% @house.avatars.each do |pic|%> 
+				<li><%= image_tag("#{DOMIAN}#{pic.picture.big.url}")%><li>
+		<% end%> 
+	</ul>
+</div>
+<div class="show">
+	<div class="title"><h6><%= @house.title%></h6></div>
+	<div class="content"><%= @house.content%></div>
+</div>

@@ -18,8 +18,8 @@
 
 class Message < ActiveRecord::Base
 	include ActionView::Helpers::UrlHelper
-  include ActionDispatch::Routing::UrlFor
-  include Rails.application.routes.url_helpers
+	include ActionDispatch::Routing::UrlFor
+	include Rails.application.routes.url_helpers
 	# attr_accessible :title, :body
 	belongs_to :relatable ,:polymorphic => true
 
@@ -72,20 +72,20 @@ class Message < ActiveRecord::Base
 		if content == "help" or content == "h"
 			return Template.render_text(xml,Template::HELP_MSG)
 		end
-		if content.include? "cz" #查看出租信息
-			date = content.split(" ")[1]
-			if date.blank?
-				houses = House.today.publish.limit(5)
-			else
-				begin
-					date = date.to_datetime if data.present?
-				rescue ArgumentError => e 
-					return Template.render_text(xml,"无效的日期!")
+		if content.include? "1" #查看出租信息
+			houses = House.today.publish.where(:house_type => House::HOUSE_TYPE_SHRENT).limit(5)
+			more_link = "#{DOMIAN}/houses?type=0"
+			item_text = ""
+			houses.each do |item|
+				if houses.first == item
+					img_url = DOMIAN + item.avatar.picture.big.url
+				else
+					img_url = DOMIAN + item.avatar.picture.thumb.url
 				end
-				houses = House.date(date).publish.limit(5)
+				item_text << ITEM_TPL % [item.title,item.content,img_url,"#{DOMIAN}/houses/#{item.id}"]
 			end
-			more_link = date.blank? ? "#{DOMIAN}/houses" : "#{DOMIAN}/houses?date=#{date.strftime('%Y-%m-%d')}"
-			return Template.render_articles(xml,houses,more_link)
+			item_text << ITEM_TPL % [">>点击查看更多今日信息","","",more_link]
+			return Template.render_articles(xml,item_text,houses.size)
 		end
 	end
 
